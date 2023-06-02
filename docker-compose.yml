@@ -1,0 +1,23 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:15.3-alpine
+    restart: always
+    volumes:
+      - ./pg:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DATABASE_LOCAL: database
+      POSTGRES_DB: database
+      POSTGRES_HOST_LOCAL: localhost
+      POSTGRES_PASSWORD_LOCAL: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_PORT_LOCAL: 5432
+      POSTGRES_USER_LOCAL: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
